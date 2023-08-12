@@ -1,6 +1,7 @@
 #include <iostream>
 #include <string>
 #include <functional>
+#include <cmath>
 
 std::string typeToString(int type)
 {
@@ -66,6 +67,14 @@ public:
     {
         return (up == 0) && (right == 0) && (down == 0) && (left == 0);
     }
+
+    Node rotate(){
+        int tmp = up;
+        up = right;
+        right = down;
+        down = left;
+        left = up;
+    }
 };
 
 /// Function to print grid
@@ -124,6 +133,29 @@ bool insert_node(Node grid[], Node new_node, int x, int y, int grid_width, int g
            (match_edge(grid, x, (y + 1), getUpFunc, new_node.get_down(), 3, 3));
 }
 
+void try_node(Node sorted_grid[], Node candidate, Node candidates[], int position, int grid_width, int grid_height);
+
+bool sort(Node sorted_grid[], Node candidates[], int position, int grid_width, int grid_height)
+{
+
+    for (int i = 0; i < 9; i++)
+    {
+        try_node(sorted_grid, candidates[i], candidates, position,grid_width, grid_height);
+        try_node(sorted_grid, candidates[i].rotate(), candidates, position,grid_width, grid_height);
+        try_node(sorted_grid, candidates[i].rotate().rotate(), candidates, position,grid_width, grid_height);
+        try_node(sorted_grid, candidates[i].rotate().rotate().rotate(), candidates, position,grid_width, grid_height);
+    }
+}
+
+void try_node(Node sorted_grid[], Node candidate, Node candidates[], int position, int grid_width, int grid_height)
+{
+    if (insert_node(sorted_grid, candidate, (position % grid_width), std::floor(position / grid_width), grid_width, grid_height))
+    {
+        sorted_grid[position] = candidate;
+        sort(sorted_grid, candidates, position + 1, grid_width, grid_height);
+    }
+}
+
 int main()
 {
     Node nodes[9] = {
@@ -137,13 +169,17 @@ int main()
         Node(-3, 1, 3, -4),
         Node(-4, 1, 2, -2)};
 
-    Node nodes_test[9];
+    Node sorted_grid[9];
 
-    nodes_test[0] = {1, 1, 1, 1};
-    nodes_test[1] = {-2, -2, -2, -2};
-    Node test = {3, 3, 3, 3};
+    try_node(sorted_grid, nodes[0], nodes, 0, 3, 3);
+
+    // Node nodes_test[9];
+    //  nodes_test[0] = {1, 1, 1, 1};
+    //  nodes_test[1] = {-2, -2, -2, -2};
+    //  Node test = {3, 3, 3, 2};
 
     printNodes(nodes);
+    printNodes(sorted_grid);
     // printNodes(nodes_test);
 
     // if (insert_node(nodes_test, test, 2, 0, 3, 3))
@@ -154,5 +190,5 @@ int main()
     // {
     //     std::cout << "No" << std::endl;
     // }
-    return 0;
+    // return 0;
 }
