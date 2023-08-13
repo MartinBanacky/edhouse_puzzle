@@ -36,21 +36,21 @@ std::string Node::typeToString(int type) const
     switch (type)
     {
     case 1:
-        return "r1"; // Red with mouth
+        return "Rm"; // Red with mouth
     case -1:
-        return "r2"; // Red with eyes
+        return "Re"; // Red with eyes
     case 2:
-        return "g1"; // Green with mouth
+        return "Gm"; // Green with mouth
     case -2:
-        return "g2"; // Green with eyes
+        return "Ge"; // Green with eyes
     case 3:
-        return "b1"; // Blue with mouth
+        return "Bm"; // Blue with mouth
     case -3:
-        return "b2"; // Blue with eyes
+        return "Be"; // Blue with eyes
     case 4:
-        return "y1"; // Yellow with mouth
+        return "Ym"; // Yellow with mouth
     case -4:
-        return "y2"; // Yellow with eyes
+        return "Ye"; // Yellow with eyes
     default:
         return "  "; // Empty
     }

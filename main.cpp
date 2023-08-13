@@ -6,13 +6,13 @@
 int main()
 {
     // Define puzzle piece meanings:
-    //  1 = red smile
+    //  1 = red mouth
     // -1 = red eyes
-    //  2 = green smile
+    //  2 = green mouth
     // -2 = green eyes
-    //  3 = blue smile
+    //  3 = blue mouth
     // -3 = blue eyes
-    //  4 = yellow smile
+    //  4 = yellow mouth
     // -4 = yellow eyes
 
     // Define the puzzle pieces using the 'Node' class, each representing a square from the puzzle (original.png)
@@ -55,11 +55,13 @@ int main()
     std::cout << "Puzzle 1:" << std::endl;
     solve_puzzle(nodes);
 
-    std::cout << "Puzzle 2:" << std::endl;
-    solve_puzzle(nodes2);
+    std::cout << "m = mouth & e = eyes" << std::endl;
 
-    std::cout << "Puzzle 3:" << std::endl;
-    solve_puzzle(nodes3);
+    // std::cout << "Puzzle 2:" << std::endl;
+    // solve_puzzle(nodes2);
+
+    // std::cout << "Puzzle 3:" << std::endl;
+    // solve_puzzle(nodes3);
 
     return 0;
 }
