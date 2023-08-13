@@ -6,84 +6,87 @@ Node::Node() : up(0), right(0), down(0), left(0) {}
 Node::Node(int u, int r, int d, int l)
     : up(u), right(r), left(l), down(d) {}
 
-// Returns up value
+// Returns the value of the 'up' node
 int Node::get_up() const
 {
     return this->up;
 }
 
-// Returns right value
+// Returns the value of the 'right' node
 int Node::get_right() const
 {
     return this->right;
 }
 
-//Returns down value
+// Returns the value of the 'down' node
 int Node::get_down() const
 {
     return this->down;
 }
 
-//Returns left value
+// Returns the value of the 'left' node
 int Node::get_left() const
 {
     return this->left;
 }
 
-//Function converts type to its string represation
+// Converts the type to its string representation for printing
 std::string Node::typeToString(int type) const
 {
     switch (type)
     {
     case 1:
-        return "r1"; // red with mouth
+        return "r1"; // Red with mouth
     case -1:
-        return "r2"; // red with eyes
+        return "r2"; // Red with eyes
     case 2:
-        return "g1"; // green with mouth
+        return "g1"; // Green with mouth
     case -2:
-        return "g2"; // green with eyes
+        return "g2"; // Green with eyes
     case 3:
-        return "b1"; // blue with mouth
+        return "b1"; // Blue with mouth
     case -3:
-        return "b2"; // blue with eyes
+        return "b2"; // Blue with eyes
     case 4:
-        return "y1"; // yellow with mouth
+        return "y1"; // Yellow with mouth
     case -4:
-        return "y2"; // yellow with eyes
+        return "y2"; // Yellow with eyes
     default:
-        return "  ";
+        return "  "; // Empty
     }
 }
 
-//Prints
+// Returns a string representation of the 'up' node
 std::string Node::printUpNode() const
 {
     return typeToString(up);
 }
 
+// Returns a string representation of the 'right' node
 std::string Node::printRightNode() const
 {
     return typeToString(right);
 }
 
+// Returns a string representation of the 'down' node
 std::string Node::printDownNode() const
 {
     return typeToString(down);
 }
 
+// Returns a string representation of the 'left' node
 std::string Node::printLeftNode() const
 {
     return typeToString(left);
 }
 
-//operator overload - one or more zero values == empty/invalid
+// Operator overload: Returns true if the Node is empty/invalid
 bool Node::operator!() const
 {
     return (up == 0) || (right == 0) || (down == 0) || (left == 0);
 }
 
-//Func rotates Node values (like irl rotate)
+// Rotates the Node values (simulating a physical rotation)
 Node Node::rotate() const
 {
     Node rotatedNode = *this;

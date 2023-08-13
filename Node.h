@@ -3,7 +3,7 @@
 
 #include <string>
 
-//Node represents one piece of puzzle - every attribute carry color and type (smile/eyes)
+// Node represents a puzzle piece, carrying color and type attributes (smile/eyes)
 class Node
 {
 private:
@@ -13,20 +13,24 @@ private:
     int left;
 
 public:
+    // Constructors
     Node();
     Node(int u, int r, int d, int l);
 
+    // Accessor methods
     int get_up() const;
     int get_right() const;
     int get_down() const;
     int get_left() const;
 
+    // Utility methods (Node)
     std::string typeToString(int type) const;
     std::string printUpNode() const;
     std::string printRightNode() const;
     std::string printDownNode() const;
     std::string printLeftNode() const;
 
+    // Operator overloads
     bool operator!() const;
     Node rotate() const;
 };

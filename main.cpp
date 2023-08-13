@@ -5,17 +5,17 @@
 
 int main()
 {
-    // MAX SIZE OF GRID 3x3
+    // Define puzzle piece meanings:
     //  1 = red smile
-    //-1 = red eyes
+    // -1 = red eyes
     //  2 = green smile
-    //-2 = green eyes
+    // -2 = green eyes
     //  3 = blue smile
-    //-3 = blue eyes
+    // -3 = blue eyes
     //  4 = yellow smile
-    //-4 = yellow eyes
+    // -4 = yellow eyes
 
-    // One square from puzzle(original.png) is represented here as Node
+    // Define the puzzle pieces using the 'Node' class, each representing a square from the puzzle (original.png)
     std::vector<Node> nodes = {
         Node(1, 4, -1, -2),
         Node(-3, -4, 3, 2),
@@ -27,7 +27,7 @@ int main()
         Node(-3, 1, 3, -4),
         Node(-4, 1, 2, -2)};
 
-    // TEST1 - not solvable
+    // Test Case 1 - Not solvable configuration
     std::vector<Node> nodes2 = {
         Node(1, 1, 1, 1),
         Node(1, 1, 1, 1),
@@ -39,7 +39,7 @@ int main()
         Node(4, 4, 4, 4),
         Node(4, 4, 4, 4)};
 
-    // TEST2 - end immedietely if blank Node is in input
+    // Test Case 2 - Handling an immediate end if a blank 'Node' is present in the input
     std::vector<Node> nodes3 = {
         Node(),
         Node(),
@@ -51,13 +51,14 @@ int main()
         Node(),
         Node()};
 
-    std::cout << "Puzzle1:" << std::endl;
+    // Solving and printing puzzle solutions
+    std::cout << "Puzzle 1:" << std::endl;
     solve_puzzle(nodes);
 
-    std::cout << "Puzzle2:" << std::endl;
+    std::cout << "Puzzle 2:" << std::endl;
     solve_puzzle(nodes2);
 
-    std::cout << "Puzzle3:" << std::endl;
+    std::cout << "Puzzle 3:" << std::endl;
     solve_puzzle(nodes3);
 
     return 0;
