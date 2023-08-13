@@ -53,7 +53,18 @@
 			"list": "cpp",
 			"unordered_map": "cpp",
 			"vector": "cpp",
-			"xhash": "cpp"
+			"xhash": "cpp",
+			"set": "cpp",
+			"xtree": "cpp",
+			"algorithm": "cpp",
+			"deque": "cpp",
+			"fstream": "cpp",
+			"map": "cpp",
+			"optional": "cpp",
+			"queue": "cpp",
+			"ranges": "cpp",
+			"span": "cpp",
+			"sstream": "cpp"
 		}
 	}
 }
