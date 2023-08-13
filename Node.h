@@ -29,10 +29,11 @@ public:
     std::string printRightNode() const;
     std::string printDownNode() const;
     std::string printLeftNode() const;
+    Node rotate() const;
 
     // Operator overloads
     bool operator!() const;
-    Node rotate() const;
+    
 };
 
 #endif

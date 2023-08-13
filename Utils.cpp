@@ -8,7 +8,6 @@ int counter_comb = 0;
 
 // Function pointers for getting specific edges from a Node.
 // These lambda functions are used to retrieve the values of the edges (up, right, down, left) of a given Node.
-// For instance, 'getUpFunc' retrieves the value of the upper edge of a Node by calling 'node.get_up()'.
 auto getUpFunc = [](const Node &node)
 {
     return node.get_up();
@@ -72,7 +71,7 @@ void printNodes(const std::vector<Node> &node_array)
     }
 }
 
-// This function validates whether the edge of a new puzzle piece can be inserted at a specified position.
+// This function validates whether the edge of a new puzzle piece fits with edge of compered puzzle piece.
 // Parameters:
 // - grid: The current grid configuration.
 // - x: X-coordinate of the puzzle position to compare with.
@@ -82,12 +81,12 @@ void printNodes(const std::vector<Node> &node_array)
 // - grid_width: Width of the puzzle grid.
 // - grid_height: Height of the puzzle grid.
 // Returns:
-// - True if the new edge can be inserted at the specified position, otherwise, false.
+// - True if the new edge fits with other edge, otherwise, false.
 bool match_edge(const std::vector<Node> &grid, int x, int y, const std::function<int(const Node &)> &get_edge, int new_edge, int grid_width, int grid_height)
 {
     // empty = can be 0-8 (position in vector - in grid)
     int empty = x + (y * grid_width);
-    // x == -1 (left side), x >= grid_width (right side), y == -1 TOP, y >= grid_height BOTTOM, puzzle empty -> nothing to compare, last is compare if == 0 match (OK)
+    // x == -1 (left side), x >= grid_width (right side), y == -1 TOP, y >= grid_height BOTTOM, puzzle empty -> nothing to compare, edges fits OK
     return (x < 0) || (y < 0) || (x >= grid_width) || (y >= grid_height) || (empty >= grid_width * grid_height) || (!grid[empty]) || ((get_edge(grid[empty]) + new_edge) == 0);
 }
 
@@ -126,7 +125,7 @@ void try_node(std::vector<Node> sorted_grid, Node candidate, std::vector<Node> c
 {
     // here we count combs
     counter_comb++;
-    // here we test if it really fits
+    // here we test if candidate fits
     if (insert_node(sorted_grid, candidate, (position % grid_width), std::floor(position / grid_width), grid_width, grid_height))
     {
         // inserting candidate
@@ -153,6 +152,7 @@ void sort(const std::vector<Node> &sorted_grid, std::vector<Node> candidates, in
     {
         // prints result
         printNodes(sorted_grid);
+        //exit(0); //uncomment if rest of the results are unnecessary
         return;
     }
     // Iterate through the remaining puzzle candidates and try to insert them at different positions.
